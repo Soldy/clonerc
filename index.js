@@ -23,6 +23,10 @@ const cloneBase = function(){
     const _one = function(element){
         if(Buffer.isBuffer(element))
             return Buffer.from(element);
+        if(element===null)
+            return null;
+        if(Number.isNaN(element))
+            return NaN;
         const type = (typeof element);
         if(type === 'boolean'){
             if(element)
@@ -53,12 +57,10 @@ const cloneBase = function(){
      * @return {number}
      */
     const _number = function(element){
-        if(Number.isNaN(element))
-            return NaN;
-        if(Number.isSsfeInteger(element))
+        if(Number.isSafeInteger(element))
             return parseInt(element);
-        parseFloat(element);
+        return parseFloat(element);
     };
 };
 
-exports.base = cloneBase();
+exports.base = cloneBase;
