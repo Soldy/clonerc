@@ -12,15 +12,39 @@ const cloneBase = function(){
      * @public
      * @return {any}
      */
+    this.fast = function(element){
+        return _fast(element);
+    };
+    /*
+     * @param {any}
+     * @public
+     * @return {any}
+     */
+    this.faster = function(element){
+        return _faster(element);
+    };
+    /*
+     * @param {any}
+     * @public
+     * @return {any}
+     */
     this.clone = function(element){
-        return _one(element);
+        return _normal(element);
+    };
+    /*
+     * @param {any}
+     * @public
+     * @return {any}
+     */
+    this.normal = function(element){
+        return _normal(element);
     };
     /*
      * @param {any}
      * @private
      * @return {any}
      */
-    const _one = function(element){
+    const _normal = function(element){
         if(Buffer.isBuffer(element))
             return Buffer.from(element);
         if(element===null)
@@ -40,16 +64,15 @@ const cloneBase = function(){
         if(Array.isArray(element)){
             let out = [];
             for(let i of element)
-                out.push(_one(i));
+                out.push(_normal(i));
             return out;
         }
         let out = {};
         for(let i in element)
-            out[i] = _one(
+            out[i] = _normal(
                 element[i]
             );
         return out;
-
     };
     /*
      * @param {number}
@@ -60,6 +83,61 @@ const cloneBase = function(){
         if(Number.isSafeInteger(element))
             return parseInt(element);
         return parseFloat(element);
+    };
+    /*
+     * @param {any}
+     * @private
+     * @return {any}
+     */
+    const _faster = function(element){
+        switch(typeof element){
+            case 'boolean':
+                if(element)
+                    return true;
+                return false;
+            case 'number':
+                if(Number.isSafeInteger(element))
+                    return parseInt(element);
+                return parseFloat(element);
+            case 'string':
+                return element.toString();
+            case 'object':
+                if(element.constructor === [].constructor){
+                    let out = [];
+                    for(let i of element)
+                        out.push(_faster(i));
+                    return out;
+                }
+                let out = {};
+                for(let i in element)
+                    out[i] = _faster(
+                        element[i]
+                    );
+                return out;
+        }
+    };
+    /*
+     * @param {any}
+     * @private
+     * @return {any}
+     */
+    const _fast = function(element){
+        switch(typeof element){
+            case 'boolean':
+                if(element)
+                    return true;
+                return false;
+            case 'number':
+                if(Number.isSafeInteger(element))
+                    return parseInt(element);
+                return parseFloat(element);
+            case 'string':
+                return element.toString();
+            case 'object':
+                if(element.constructor === ({}).constructor)
+                    return {...element};
+                return [...element];
+        };
     };
 };
 
