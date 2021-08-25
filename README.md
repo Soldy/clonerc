@@ -1,6 +1,6 @@
 # clonerc
 
-Scalabble deepcopy tools.
+Scalable deepcopy tools.
 
 ## install
 
