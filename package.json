@@ -1,7 +1,7 @@
 {
   "name": "clonerc",
-  "version": "0.0.3",
-  "description": "deep copy",
+  "version": "0.0.4",
+  "description": "deep copy tools",
   "main": "index.js",
   "scripts": {
     "test": "node test.js"
