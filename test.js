@@ -5,7 +5,7 @@ const clonerc = new (require('./index.js')).base();
 nanoTest.add(
     'fastest copy booolean false',
     {
-        'function':clonerc.fastest,
+        'function':clonerc.faster,
         'options':[false]
     },
     '===',
@@ -14,7 +14,7 @@ nanoTest.add(
 nanoTest.add(
     'fastest copy booolean true',
     {
-        'function':clonerc.fastest,
+        'function':clonerc.faster,
         'options':[true]
     },
     '===',
@@ -23,7 +23,7 @@ nanoTest.add(
 nanoTest.add(
     'fastest copy integer',
     {
-        'function':clonerc.fastest,
+        'function':clonerc.faster,
         'options':[1]
     },
     '===',
@@ -32,7 +32,7 @@ nanoTest.add(
 nanoTest.add(
     'fastest copy float',
     {
-        'function':clonerc.fastest,
+        'function':clonerc.faster,
         'options':[1.15]
     },
     '===',
@@ -41,7 +41,7 @@ nanoTest.add(
 nanoTest.add(
     'fastest copy array',
     {
-        'function':clonerc.fastest,
+        'function':clonerc.faster,
         'options':[[1,2.2,3,'string']]
     },
     'j==',
@@ -50,7 +50,7 @@ nanoTest.add(
 nanoTest.add(
     'fastest copy object',
     {
-        'function':clonerc.fastest,
+        'function':clonerc.faster,
         'options':[{a:1,b:2,c:3,d:'string'}]
     },
     'j==',
@@ -230,7 +230,7 @@ nanoTest.add(
 );
 
 
-
+/*
 
 nanoTest.add(
     'safe copy booolean false',
@@ -296,6 +296,6 @@ nanoTest.add(
     {a:1,b:2,c:3,d:'string'}
 );
 
-
+*/
 
 nanoTest.run();
