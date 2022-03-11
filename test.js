@@ -1,5 +1,6 @@
 const nanoTest  = new (require('nanoTest')).test({
-    'debugPrint' : 'short'
+    'progress_bar':false,
+    'debug_print' : 'short'
 });
 const clonerc = new (require('./index.js')).base();
 nanoTest.add(
