@@ -1,6 +1,6 @@
 {
   "name": "clonerc",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "deep copy tools",
   "main": "index.js",
   "scripts": {
@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/Soldy/clonerc#readme",
   "devDependencies": {
-    "nanoTest": "^0.9.9-beta17c"
+    "nanoTest": "0.9.9-beta26"
   }
 }
