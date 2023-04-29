@@ -3,6 +3,14 @@ const nanoTest  = new (require('nanoTest')).test({
     'debug_print' : 'short'
 });
 const clonerc = new (require('./index.js')).base();
+
+let _example = {
+    a_string: 'test n',
+    a_number: 1
+};
+
+let _transporter = {};
+
 nanoTest.add(
     'fastest copy booolean false',
     {
@@ -229,10 +237,6 @@ nanoTest.add(
     'j==',
     {a:1,b:2,c:3,d:'string'}
 );
-
-
-/*
-
 nanoTest.add(
     'safe copy booolean false',
     {
@@ -247,6 +251,17 @@ nanoTest.add(
     {
         'function':clonerc.safe,
         'options':[true]
+    },
+    '===',
+    true
+);
+nanoTest.add(
+    'safe copy NaN',
+    {
+        'function':function(){
+            return Number.isNaN(clonerc.safe(NaN));
+        },
+        'options':[]
     },
     '===',
     true
@@ -296,7 +311,41 @@ nanoTest.add(
     'j==',
     {a:1,b:2,c:3,d:'string'}
 );
+nanoTest.add(
+    'test copy',
+    {
+        'function':function(){
+            _transporter = _example;
+            return _transporter.a_string;
+        }
+    },
+    '===',
+    'test n'
+);
+nanoTest.add(
+    'test string change',
+    {
+        'function':function(){
+            _example.a_string += 'a';
+            return _transporter.a_string;
+        }
+    },
+    '===',
+    'test na'
+);
+nanoTest.add(
+    'test number change',
+    {
+        'function':function(){
+            _example.a_number++;
+            return _transporter.a_number;
+        }
+    },
+    '===',
+    2
+);
 
-*/
+
+
 
 nanoTest.run();
